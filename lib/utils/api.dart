@@ -5,6 +5,7 @@ import 'package:dio/dio.dart' as p_dio;
 import 'package:todo_list_app/utils/json.dart';
 
 import '../models/checklist.dart';
+import '../models/item.dart';
 import 'instance_pref.dart';
 
 class Api {
@@ -185,6 +186,25 @@ class Api {
       Map<String, dynamic> map = result;
       if (map.containsKey('statusCode') && map['statusCode'] == 2000) {
         return true;
+      } else if (map.containsKey('errorMessage')) {
+        throw(map['errorMessage']);
+      } else {
+        throw('Server response failed. Please try again!');
+      }
+    });
+  }
+
+  Future<List<Item>> fetchChecklistItemAll(int checklistId) async {
+    Uri url = Uri.http(
+      baseUrl,
+      '/api/checklist/$checklistId/item',
+    );
+
+    return _fetchRequest(url, method: 'GET', token: InstancePref.getToken())
+    .then((dynamic result) {
+      Map<String, dynamic> map = result;
+      if (map.containsKey('statusCode') && map['statusCode'] == 2000) {
+        return parseListFromMap<Item>(map, 'data');
       } else if (map.containsKey('errorMessage')) {
         throw(map['errorMessage']);
       } else {

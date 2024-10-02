@@ -40,53 +40,56 @@ class HomePage extends StatelessWidget {
         itemBuilder: (context, index) {
           Checklist checklist = controller.checklist[index];
 
-          return Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: Colors.grey)
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                      onPressed: () => controller.deleteOnPressed(checklist.id),
-                      icon: const Icon(Icons.delete_forever_outlined)
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 6,),
-                Text("Name : ${checklist.name}"),
-                Text("Status : ${checklist.checklistCompletionStatus}"),
-                const SizedBox(height: 6,),
-                Text("Items : ${checklist.name}"),
-                if (checklist.items.isNotEmpty)
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: checklist.items.map((item) {
-                      return Container(
-                        alignment: Alignment.topLeft,
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(8),
-                        margin: const EdgeInsets.only(bottom: 6),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Name : ${item.name}"),
-                            Text("Status : ${item.itemCompletionStatus}"),
-                          ],
-                        ),
-                      );
-                    }).toList(),
-                  )
-              ],
+          return GestureDetector(
+            onTap: () => Get.toNamed(RouteName.checklistDetail, arguments: [checklist]),
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.grey)
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: () => controller.deleteOnPressed(checklist.id),
+                        icon: const Icon(Icons.delete_forever_outlined)
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 6,),
+                  Text("Name : ${checklist.name}"),
+                  Text("Status : ${checklist.checklistCompletionStatus}"),
+                  const SizedBox(height: 6,),
+                  Text("Items : ${checklist.name}"),
+                  if (checklist.items.isNotEmpty)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: checklist.items.map((item) {
+                        return Container(
+                          alignment: Alignment.topLeft,
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(8),
+                          margin: const EdgeInsets.only(bottom: 6),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Name : ${item.name}"),
+                              Text("Status : ${item.itemCompletionStatus}"),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    )
+                ],
+              ),
             ),
           );
         },

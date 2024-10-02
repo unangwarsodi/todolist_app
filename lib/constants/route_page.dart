@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../views/add_checklist.dart';
+import '../views/checklist_detail.dart';
 import '../views/home.dart';
 import '../views/login.dart';
 import '../views/register.dart';
@@ -16,5 +17,6 @@ class RoutePage {
     GetPage(name: RouteName.register, page: () => const RegisterPage(), transition: Transition.noTransition),
     GetPage(name: RouteName.home, page: () => const HomePage(), transition: Transition.noTransition),
     GetPage(name: RouteName.addChecklist, page: () => const AddChecklistPage(), transition: Transition.noTransition),
+    GetPage(name: RouteName.checklistDetail, page: () => const ChecklistDetailPage(), transition: Transition.noTransition),
   ];
 }
