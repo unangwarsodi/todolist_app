@@ -35,7 +35,7 @@ class HomeController extends GetxController {
 
     Api().fetchChecklistAll()
     .then((items) {
-      checklist.addAll(items);
+      checklist.assignAll(items);
     })
     .whenComplete(() => isLoading = false);
   }
