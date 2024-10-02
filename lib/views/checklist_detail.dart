@@ -21,7 +21,7 @@ class ChecklistDetailPage extends StatelessWidget {
             title: const Text("Checklist Detail"),
             actions: [
               IconButton(
-                onPressed: () => Get.toNamed(RouteName.addChecklist),
+                onPressed: () {},
                 icon: const Icon(Icons.add)
               )
             ],
