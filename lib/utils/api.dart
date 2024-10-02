@@ -212,4 +212,23 @@ class Api {
       }
     });
   }
+
+  Future<bool> deleteChecklistItem({required int checklistId, required int itemId}) async {
+    Uri url = Uri.http(
+      baseUrl,
+      '/api/checklist/$checklistId/item/$itemId',
+    );
+
+    return _fetchRequest(url, method: 'DELETE', token: InstancePref.getToken())
+    .then((dynamic result) {
+      Map<String, dynamic> map = result;
+      if (map.containsKey('statusCode') && map['statusCode'] == 2300) {
+        return true;
+      } else if (map.containsKey('errorMessage')) {
+        throw(map['errorMessage']);
+      } else {
+        throw('Server response failed. Please try again!');
+      }
+    });
+  }
 }

@@ -48,6 +48,16 @@ class ChecklistDetailController extends GetxController {
     .whenComplete(() => isLoading = false);
   }
 
-  void deleteOnPressed(int id) {
+  void deleteItemOnPressed(int id) {
+    isLoading = true;
+
+    Api().deleteChecklistItem(
+      checklistId: checklist.id,
+      itemId: id,
+    )
+    .then((items) {
+      itemsList.removeWhere((element) => element.id == id);
+    })
+    .whenComplete(() => isLoading = false);
   }
 }

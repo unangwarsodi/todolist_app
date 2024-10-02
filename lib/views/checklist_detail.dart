@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constants/route_name.dart';
 import '../controllers/checklist_detail_controller.dart';
-import '../models/checklist.dart';
 import '../models/item.dart';
 
 class ChecklistDetailPage extends StatelessWidget {
@@ -66,7 +64,7 @@ class ChecklistDetailPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           IconButton(
-                            onPressed: () => controller.deleteOnPressed(item.id),
+                            onPressed: () => controller.deleteItemOnPressed(item.id),
                             icon: const Icon(Icons.delete_forever_outlined)
                           ),
                         ],
