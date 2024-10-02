@@ -60,7 +60,32 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 6,),
                 Text("Name : ${checklist.name}"),
-                Text("Status : ${checklist.checklistCompletionStatus}")
+                Text("Status : ${checklist.checklistCompletionStatus}"),
+                const SizedBox(height: 6,),
+                Text("Items : ${checklist.name}"),
+                if (checklist.items.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: checklist.items.map((item) {
+                      return Container(
+                        alignment: Alignment.topLeft,
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(8),
+                        margin: const EdgeInsets.only(bottom: 6),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Name : ${item.name}"),
+                            Text("Status : ${item.itemCompletionStatus}"),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                  )
               ],
             ),
           );
